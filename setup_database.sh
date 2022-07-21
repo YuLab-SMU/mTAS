@@ -4,6 +4,9 @@ set -e
 # Descirption:
 #   check, download and setup some of the database files 
 
+# Update
+#   20220721
+
 wd=$1 
 [ ${#@} -eq 0 ] && wd=database
 mkdir -p $wd 
