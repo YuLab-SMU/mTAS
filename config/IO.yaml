@@ -1,0 +1,5 @@
+# initial input 
+ind_reads: "raw_reads"
+
+# final output 
+final_oud: "final_oud"

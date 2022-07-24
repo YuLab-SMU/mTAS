@@ -1,0 +1,29 @@
+### Description: this is a configuration file specifying paths 
+
+## initial input path
+ind_reads: "raw_reads"
+## final output path 
+final_oud: "final_oud"
+
+## intemediate output directories
+# for upstream processing 
+oud_reads: "output/clean_reads"
+oud_contigs: "output/spades_oud"
+# identification or annotation 
+oud_vV: "output/viralV_oud"
+oud_TA: "output/iden_TA_oud"
+oud_MGE: "output/iden_MGE_oud"
+oud_ARG: "output/iden_ARG_oud"
+ 
+
+## database 
+db_MGEdb: 'database/ICEberg'
+db_TADB2: 'databases/TADB2'
+db_ref_AT: 'database/TADB2/fna/antitoxin/merge2.fna'
+db_map_AT: 'database/TADB2/fna/antitoxin/encode.map.2'
+db_ref_T: 'database/TADB2/faa/toxin/merge2.fna'
+db_map_T: 'database/TADB2/faa/toxin/encode.map.2'
+db_TASm: 'databases/TASmania_HMMs'
+#db_ref_plm: 'database/NCBI/Refseq/plasmid.fa'
+#db_ref_phage: 'database/NCBI/Refseq/virus.fa'
+db_hmm: 'database/Pfam/Pfam-A.31.0.hmm'

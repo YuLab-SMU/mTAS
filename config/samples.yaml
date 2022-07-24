@@ -1,0 +1,18 @@
+sample:
+    SRR10763342
+    SRR11288341
+
+
+sample:
+    A: SRR10763342
+    B: SRR11288341
+
+
+fqs:
+    SRR10763342_1: raw_reads/SRR10763342_1.fastq
+    SRR11288341_1: raw_reads/SRR11288341_1.fastq
+    SRR10763342_2: raw_reads/SRR10763342_2.fastq
+    SRR11288341_2: raw_reads/SRR11288341_2.fastq 
+
+
+

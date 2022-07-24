@@ -1,0 +1,9 @@
+# global thread usage 
+ths: 72
+
+# fastp 
+corr: "-3"
+win_size: "4"
+
+# mash 
+ths_mash: 16
