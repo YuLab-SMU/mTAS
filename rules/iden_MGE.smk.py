@@ -1,1 +1,0 @@
-/share/Users/Zehan/Packages/mTAS/mTAS-dev0.3/rules/iden_MGE.smk
