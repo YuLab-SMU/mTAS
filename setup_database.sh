@@ -27,7 +27,7 @@ sed -n  "/Pfam-A.hmm.gz/p" $wd/Pfam/md5_checksums > $wd/Pfam/md5.tmp
 
 # hmm.gz
 if [ ! -f $wd/Pfam/Pfam-A.hmm ] ;then 
-    #wget -c $hmm -O $wd/Pfam/Pfam-A.hmm.gz 
+    wget -c $hmm -O $wd/Pfam/Pfam-A.hmm.gz 
     gzip -k -d $wd/Pfam/Pfam-A.hmm.gz # no need to depress, viralVerify accepts gz file 
     cd $wd/Pfam 
     md5sum -c md5.tmp | tee $p/log
