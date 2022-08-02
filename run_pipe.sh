@@ -4,7 +4,7 @@ set -e
 ind_reads=$1
 final_oud=$2
 
-
+[ ${#ind_reads} -eq 0 ] && echo ERROR: please provide input path && exit  
 [ ! -d $ind_reads ] && echo ERROR: please provide input path && exit 
 [ ${#final_oud} -eq 0 ] && final_oud="output/final_oud"
 
