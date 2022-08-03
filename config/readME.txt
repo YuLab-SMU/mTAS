@@ -1,8 +1,6 @@
 """
 config.yaml
-    a configuration file setting up environment for high-throughput sequencing data (default)
-config2.yaml
-    similar to config.yaml, but designed for contig/scaffold files in fasta format 
+    a configuration file setting up environment for high-throughput sequencing data (default) 
 params.yaml
     contains default parameters for all dependancies
 samples.yaml
