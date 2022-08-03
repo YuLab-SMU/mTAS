@@ -32,7 +32,7 @@ The curated database consis of references from different sources in cluding TADB
 + Pandas >= 1.3.4 
 
 
-installation
+## Installation
 ```
 git clone https://github.com/YuLab-SMU/mTAS.git
 ```
