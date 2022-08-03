@@ -4,16 +4,14 @@ set -e
 
 # Description: blastn wrapper for single fasta input 
 
-# Update: 2022-06-15
+# Update: 2022-08-03
 #     align against a batch of database files 
 
 
 usage() {
-    echo Usage: $0 "[ -i INPUT/FASTA ] [ -I INPUT/FOLDER ] [ -r REFERENCE/FILE ] [ -R REFERENCE/FOLDER ] [ -o PATH/TO/OUTPUT_FILE ] [ -O OUTPUT/FOLDER ] [ -h ] "
-    echo "  Example1: bash blastn_wrapper.sh -i spades_oud/SRR10763342.fa -r database/TADB_typeII_antitoxin.fa -o 05-1blastn_AT/SRR10763342.fmt6 -O 05-1blastn_AT "
+    echo Usage: $0 "[ -i INPUT/FASTA ] [ -r REFERENCE/FILE ] [ -R REFERENCE/FOLDER ] [ -o PATH/TO/OUTPUT_FILE ] [ -O OUTPUT/FOLDER ] [ -t CPU THREAD USAGE  ] [ -h ] "
+    #echo "  Example1: bash blastn_wrapper.sh -i spades_oud/SRR10763342.fa -r database/TADB_typeII_antitoxin.fa -o 05-1blastn_AT/SRR10763342.fmt6 -O 05-1blastn_AT "
 }
-
-#que=/share/Users/Zehan/Packages/mTAS/mTAS-dev0.3/spades_oud/SRR10763342.fa ; ref=/share/Users/Zehan/Packages/mTAS/database/TADB2/fna/toxin/merge2.fna ; oud=test_blastn_oud ; bash blastn_wrapper.sh -i $que -r $ref -O $oud
 
 
 [ ${#@} -eq 0 ] && echo ERROR: No arguments provided$'\n' && usage && exit
@@ -98,12 +96,10 @@ function run_blastx() {
     
     [ ${#OUD} -eq 0 ] && OUD=`pwd`/blastx_oud
     mkdir -p $OUD/$bn_que
-    #echo $OUD/$bn_que
 
     output=$OUD/$bn_que/$bn_que-$bn_sub.fmt6
     echo '  '[run blastx] aligning to subject $bn_sub
        
-    #[ ! -f $OUD/$bn_sub.nto ] && makeblastdb -in $subject -out $OUD/$bn_sub -dbtype nucl > /dev/null
     [ ! -f $OUD/$bn_sub.dmnd ] && diamond makedb --in $subject -d $OUD/$bn_sub 
     if [ ! -f $output ]; then
       diamond blastx  --query $query --db $OUD/$bn_sub --out $output \
@@ -113,19 +109,13 @@ function run_blastx() {
     else
 	echo '  [run_blastx] file exist' $output	
     fi
-    
-    #blastn -query $query -db $OUD/$bn_sub -out $output \
-#	-outfmt '6 qaccver saccver pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen stitle qacc qseqid' \
-#	-num_threads 72 \
-#	-word_size 21
      
     mkdir -p $OUD/$bn_que/tmp_dir 
 
-    add_bn $output $OUD/$bn_que/tmp_dir/$bn_sub.fmt6
-    #ls $OUD/$bn_que/tmp_dir/$bn_sub.fmt6 
-    # [legacy] -max_target_seqs 10 # keep only 10 hit references # for large genomes, this would negalect many hit reference, only 10 out of actual hundreds or thousands were kept
+    add_bn $output $OUD/$bn_que/tmp_dir/$bn_sub.fmt6 
     
     call_besthit $OUD/$bn_que/tmp_dir/$bn_sub.fmt6 $OUD/$bn_que/tmp_dir
+    
 }   
 
 
@@ -149,10 +139,8 @@ function call_besthit {
     fmt6=$1 
     oud2=$2 
     
-    #i=`expr $i + 1`
     fn_fmt6=${fmt6##*/}
     bn_fmt6=${fn_fmt6%.*}
-    #echo "$i / $count" $fn_fmt6
     
     ouf2=$oud2/$bn_fmt6.PI.fmt6
     ouf1=$oud2/$bn_fmt6.PI.tbl
