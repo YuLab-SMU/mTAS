@@ -1,10 +1,5 @@
 ### Description: this is a configuration file specifying paths 
 
-## initial input path
-ind_reads: "raw_reads"
-## final output path 
-final_oud: "final_oud"
-
 ## intemediate output directories
 # for upstream processing 
 oud_reads: "output/clean_reads"
@@ -26,4 +21,4 @@ db_map_T: 'database/TADB2/faa/toxin/encode.map.2'
 db_TASm: 'databases/TASmania_HMMs'
 #db_ref_plm: 'database/NCBI/Refseq/plasmid.fa'
 #db_ref_phage: 'database/NCBI/Refseq/virus.fa'
-db_hmm: 'database/Pfam/Pfam-A.31.0.hmm'
+db_hmm: 'database/Pfam/Pfam-A.hmm'
